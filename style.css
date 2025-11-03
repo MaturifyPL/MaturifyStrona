@@ -1,0 +1,132 @@
+/* --- Globalne Ustawienia --- */
+:root {
+    /* Twoja paleta kolorów */
+    --true-blue: #0466c8ff; /* Główny akcent */
+    --sapphire: #0353a4ff;
+    --yale-blue: #023e7dff; /* Najciemniejszy akcent/tło kuli */
+    --oxford-blue: #002855ff;
+    --oxford-blue-2: #001845ff;
+    --oxford-blue-3: #001233ff;
+    --delft-blue: #33415cff;
+    --paynes-gray: #5c677dff;
+    --slate-gray: #7d8597ff;
+    --cool-gray: #979dacff;
+    --bialy: #ffffff;
+}
+
+body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bialy); 
+    color: var(--oxford-blue-3); 
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* --- ANIMOWANA KULA W TLE --- */
+.gradient-orb {
+    position: fixed;
+    z-index: -1;
+    width: 100vw; 
+    height: 100vw;
+    max-width: 1000px; 
+    max-height: 1000px;
+    left: 50%;
+    top: 50%; 
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, var(--true-blue) 0%, var(--sapphire) 50%, var(--bialy) 70%); 
+    border-radius: 50%;
+    filter: blur(150px);
+    opacity: 0.6; 
+    animation: fadeInOrb 3s ease-out forwards;
+}
+
+@keyframes fadeInOrb {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    to {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* --- Centralny Układ (Logo + Tekst) --- */
+header {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    text-align: center;
+    animation: centerIn 1s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#logo-center {
+    width: 120px; 
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.main-title {
+    font-size: 3em;
+    font-weight: 700;
+    color: var(--oxford-blue);
+    margin: 0;
+    /* POPRAWKA: Usunięcie text-transform: uppercase; */
+    letter-spacing: 2px; /* Lekko zmniejszone odstępy */
+    margin-bottom: 50px;
+}
+
+/* --- Tekst Już Wkrótce --- */
+.container-center {
+    position: absolute;
+    top: 60%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    animation: fadeIn 1.5s ease-out 1s forwards;
+    opacity: 0;
+}
+
+.coming-soon-text {
+    font-size: 2em;
+    font-weight: 600;
+    color: var(--true-blue); 
+    margin: 0;
+}
+
+/* --- Animowane Kropki --- */
+.loading-dots {
+    display: inline-block;
+    min-width: 30px; 
+    text-align: left;
+    color: var(--oxford-blue); 
+}
+
+/* --- Animacje ogólne --- */
+@keyframes centerIn {
+    from { opacity: 0; transform: translate(-50%, -40%); }
+    to { opacity: 1; transform: translate(-50%, -60%); }
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    #logo-center { width: 80px; }
+    .main-title { font-size: 2em; margin-bottom: 30px; letter-spacing: 1px; }
+    .coming-soon-text { font-size: 1.5em; }
+}
